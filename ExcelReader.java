@@ -36,4 +36,54 @@ public class ExcelReader {
             e.printStackTrace();
         }
     }
+
+    public static void createExcel() {
+        // Define the sheet name
+        String sheetName = "Data";
+
+        // Create a new workbook and select the sheet
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet(sheetName);
+
+        // Define headers
+        Row headers = sheet.createRow(0);
+        Cell cell1 = headers.createCell(0);
+        cell1.setCellValue("Jira Team");
+
+        Cell cell2 = headers.createCell(1);
+        cell2.setCellValue("Automation Count");
+
+        Cell cell3 = headers.createCell(2);
+        cell3.setCellValue("Manual Count");
+
+        // Add data rows
+        Row dataRow1 = sheet.createRow(1);
+        Cell cell4 = dataRow1.createCell(0);
+        cell4.setCellValue("Team A");
+
+        Cell cell5 = dataRow1.createCell(1);
+        cell5.setCellValue(10);
+
+        Cell cell6 = dataRow1.createCell(2);
+        cell6.setCellValue(5);
+
+        Row dataRow2 = sheet.createRow(2);
+        Cell cell7 = dataRow2.createCell(0);
+        cell7.setCellValue("Team B");
+
+        Cell cell8 = dataRow2.createCell(1);
+        cell8.setCellValue(5);
+
+        Cell cell9 = dataRow2.createCell(2);
+        cell9.setCellValue(15);
+
+        // Write the workbook to a file
+        FileOutputStream fileOut = new FileOutputStream("data.xlsx");
+        workbook.write(fileOut);
+        fileOut.close();
+
+        workbook.close();
+        }
+    }
 }
+
